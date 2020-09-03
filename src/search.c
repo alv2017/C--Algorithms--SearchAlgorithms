@@ -57,5 +57,42 @@ int *interpolation_search(int arr[], int arr_size, int val) {
 	return ptr;
 }
 
+int *jump_search(int arr[], int arr_size, int val) {
+	int *ptr = NULL;
+	int step_size = sqrt(arr_size);
+	int step = step_size;
+	int low = 0;
+	int high = arr[arr_size - 1];
+	// Jump Search
+	for (int i = 1; i < step_size; i++) {
+		step = step_size * i;
+		if (val < arr[step]) {
+			high = step - 1;
+			if (high - low > 1000) {
+				step_size = (int) sqrt(high - low);
+				i = 1;
+			}
+			else {
+				break;
+			}
+		}
+		else if (val == arr[step]) {
+			low = step;
+			high = step;
+			break;
+		}
+		else {
+			low = step + 1;
+		}
+	}
+	// Linear Search
+	for (int i = low; i <= high; i++) {
+		if (arr[i] == val) {
+			ptr = &arr[i];
+			break;
+		}
+	}
+	return ptr;
+}
 
 
