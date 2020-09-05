@@ -42,7 +42,12 @@ int *interpolation_search(int arr[], int arr_size, int val) {
 	int mid = 0;
 
 	while (low <= high) {
-		mid = (int) ( (double)low + (double)(high - low) * (double)(val - arr[low]) / (double) (arr[high] - arr[low]) );
+		if (low < high) {
+		    mid = low + (int) ((double)(high - low) * (double)(val - arr[low]) / (double) (arr[high] - arr[low]));
+		}
+		else {
+			mid = high;
+		}
 		if (val == arr[mid]) {
 			ptr = &arr[mid];
 			break;
