@@ -18,10 +18,3 @@ double code_timer( int *arr, int arr_size, int val, int nrun,
 	interval = (double)(end - start) / (double)(nrun) / (double) CLOCKS_PER_SEC * 1000000.0;
     return interval; // in microseconds (mcs)
 }
-
-int *generate_data(int *arr, int arr_size, int step) {
-	for (int i = 0; i < arr_size; i=i+step){
-		arr[i] = i;
-	}
-	return arr;
-}
