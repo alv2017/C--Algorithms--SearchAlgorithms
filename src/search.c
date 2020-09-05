@@ -62,7 +62,7 @@ int *jump_search(int arr[], int arr_size, int val) {
 	int step_size = sqrt(arr_size);
 	int step = step_size;
 	int low = 0;
-	int high = arr[arr_size - 1];
+	int high = arr_size - 1;
 	// Jump Search
 	for (int i = 1; i < step_size; i++) {
 		step = step_size * i;
