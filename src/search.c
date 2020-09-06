@@ -19,6 +19,10 @@ int *binary_search(int arr[], int arr_size, int val) {
 	int start = 0;
 	int end = arr_size - 1;
 
+	if (val < arr[0] || val > arr[arr_size-1]) {
+		return NULL;
+	}
+
 	while (start <= end) {
 		int mid = (start + end) / 2;
 		if (val == arr[mid]) {
@@ -41,6 +45,10 @@ int *interpolation_search(int arr[], int arr_size, int val) {
 	int low = 0;
 	int high = arr_size - 1;
 	int mid = 0;
+
+	if (val < arr[0] || val > arr[arr_size-1]) {
+		return NULL;
+	}
 
 	while (low <= high) {
 		if (low < high) {
@@ -69,6 +77,11 @@ int *jump_search(int arr[], int arr_size, int val) {
 	int step = step_size;
 	int low = 0;
 	int high = arr_size - 1;
+
+	if (val < arr[0] || val > arr[arr_size-1]) {
+		return NULL;
+	}
+
 	// Jump Search
 	for (int i = 1; i < step_size; i++) {
 		step = step_size * i;
