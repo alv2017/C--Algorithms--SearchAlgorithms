@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 #include "search.h"
 
@@ -18,3 +19,18 @@ double code_timer( int *arr, int arr_size, int val, int nrun,
 	interval = (double)(end - start) / (double)(nrun) / (double) CLOCKS_PER_SEC * 1000000.0;
     return interval; // in microseconds (mcs)
 }
+
+double average_runtime(double *runtimes_arr, int arr_size) {
+	double avg = 0;
+	for (int i = 0; i < arr_size; i++) {
+		avg += runtimes_arr[i];
+	}
+
+	if (arr_size > 0)
+	    return avg / (double) arr_size;
+	else
+		exit(EXIT_FAILURE);
+}
+
+
+
