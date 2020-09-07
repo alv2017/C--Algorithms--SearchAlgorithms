@@ -8,8 +8,6 @@
 #define DATA_FILE "data/data_100k_uniform.dat"
 #define NRUN 100
 
-#define RESULT_FORMATTER "\t%3s%-14s%3s%12d%3s%12.4f%3s\n"
-
 int main(void) {
 	int benchmark_data[SIZE] = {0};
 	int check_points[POINTS] = {0};
@@ -42,13 +40,19 @@ int main(void) {
 		}
 	}
 
-	char table_line[80] = "------------------------------------------------------------------";
+	// Algorithms Performance at Check Points
 
-	printf("\n Algorithms Performance Results at Check Points (Data Array Length: %d) \n", SIZE);
-	printf("\t *%.*s*\n", 46, table_line);
-	printf("\t%3s%-14s%3s%-12s%3s%-12s%3s\n", " | ", "Algorithm", " | ", "Check Point", " | ", "Run Time", " | ");
-	printf("\t *%.*s*\n", 46, table_line);
+	const char RESULT_FORMATTER[] = "\t%3s%-14s%3s%12d%3s%12.4f%3s\n";
+	const char HEADER_FORMATTER[] = "\t%3s%-14s%3s%12s%3s%12s%3s\n";
+	const char TABLE_LINE[80] = "------------------------------------------------------------------";
 
+	// Table Header
+	printf("\n Search Algorithms Performance Results at Check Points (On Uniform Data Array of Length %d) \n", SIZE);
+	printf("\t *%.*s*\n", 46, TABLE_LINE);
+	printf(HEADER_FORMATTER, " | ", "Algorithm", " | ", "Check Point", " | ", "Run Time,mcs", " | ");
+	printf("\t *%.*s*\n", 46, TABLE_LINE);
+
+	// Results
 	for (int i = 0; i < POINTS; i++) {
 		check_points[i] = benchmark_data[SIZE/POINTS * i -1];
 
@@ -72,10 +76,28 @@ int main(void) {
 		printf(RESULT_FORMATTER, " | ", "Jump", " | ", check_points[i], " | ",
 				jump_results[i], " | ");
 
-		printf("\t *%.*s*\n", 46, table_line);
+		printf("\t *%.*s*\n", 46, TABLE_LINE);
 	}
 
-	// To Do: Average Performance for each Algorithm
+	// Algorithms Average Performance
+	double linear_avg = average_runtime(linear_results, POINTS);
+	double binary_avg = average_runtime(binary_results, POINTS);
+	double interpolation_avg = average_runtime(interpolation_results, POINTS);
+	double jump_avg = average_runtime(jump_results, POINTS);
+
+	// Table Header
+	printf("\n Search Algorithms Average Performance Results (On Uniform Data Array of Length %d) \n", SIZE);
+	printf("\t *%.*s*\n", 31, TABLE_LINE);
+	printf("\t%3s%-14s%3s%12s%3s\n", " | ", "Algorithm", " | ", "Run Time,mcs", " | ");
+	printf("\t *%.*s*\n", 31, TABLE_LINE);
+
+	// Results
+	printf("\t%3s%-14s%3s%12.4f%3s\n", " | ", "Linear", " | ", linear_avg, " | ");
+	printf("\t%3s%-14s%3s%12.4f%3s\n", " | ", "Binary", " | ", binary_avg, " | ");
+	printf("\t%3s%-14s%3s%12.4f%3s\n", " | ", "Interpolation", " | ", interpolation_avg, " | ");
+	printf("\t%3s%-14s%3s%12.4f%3s\n", " | ", "Jump", " | ", jump_avg, " | ");
+
+	printf("\t *%.*s*\n", 31, TABLE_LINE);
 
 	return 0;
 }
