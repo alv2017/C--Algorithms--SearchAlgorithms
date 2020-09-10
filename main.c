@@ -4,7 +4,7 @@
 #include "src/code_timing.h"
 
 #define SIZE 100000
-#define POINTS 10
+#define POINTS 20
 #define DATA_FILE "data/data_100k_uniform.dat"
 #define NRUN 100
 
@@ -54,7 +54,10 @@ int main(void) {
 
 	// Results
 	for (int i = 0; i < POINTS; i++) {
-		check_points[i] = benchmark_data[SIZE/POINTS * i -1];
+		if (i % 2 == 0) // existing point
+		    check_points[i] = benchmark_data[SIZE/POINTS * i -1];
+		else // non existing point
+			check_points[i] = benchmark_data[SIZE/POINTS * i -1] + 50;
 
 		// Linear Search
 		linear_results[i] = code_timer(benchmark_data, SIZE, check_points[i], NRUN, linear_search );
