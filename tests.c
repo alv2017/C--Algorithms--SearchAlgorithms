@@ -35,20 +35,20 @@ int main(void) {
 
 	// Linear Search Function
 	puts("\nLinear Search Function.");
-	test( (*linear_search), arr, arr, nonexisting_points, ARR_SIZE);
+	test( linear_search, arr, arr, nonexisting_points, ARR_SIZE);
 
 	// Binary Search Function
 	puts("\nBinary Search Function.");
-	test( (*binary_search), arr, arr, nonexisting_points, ARR_SIZE);
+	test( binary_search, arr, arr, nonexisting_points, ARR_SIZE);
 
 	// Jump Search Function
 	puts("\nJump Search Function.");
-	test( (*jump_search), arr, arr, nonexisting_points, ARR_SIZE);
+	test( jump_search, arr, arr, nonexisting_points, ARR_SIZE);
 
 
 	// Interpolation Search Function
 	puts("\nInterpolation Search Function.");
-	test( (*interpolation_search), arr, arr, nonexisting_points, ARR_SIZE);
+	test( interpolation_search, arr, arr, nonexisting_points, ARR_SIZE);
 
 	return 0;
 }
