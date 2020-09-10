@@ -57,22 +57,22 @@ int main(void) {
 		check_points[i] = benchmark_data[SIZE/POINTS * i -1];
 
 		// Linear Search
-		linear_results[i] = code_timer(benchmark_data, SIZE, check_points[i], NRUN, (*linear_search) );
+		linear_results[i] = code_timer(benchmark_data, SIZE, check_points[i], NRUN, linear_search );
 		printf(RESULT_FORMATTER, " | ", "Linear", " | ", check_points[i], " | ",
 				linear_results[i], " | ");
 
 		// Binary Search
-		binary_results[i] = code_timer(benchmark_data, SIZE, check_points[i], NRUN, (*binary_search) );
+		binary_results[i] = code_timer(benchmark_data, SIZE, check_points[i], NRUN, binary_search );
 		printf(RESULT_FORMATTER, " | ", "Binary", " | ", check_points[i], " | ",
 				binary_results[i], " | ");
 
 		// Interpolation Search
-		interpolation_results[i] = code_timer(benchmark_data, SIZE, check_points[i], NRUN, (*interpolation_search) );
+		interpolation_results[i] = code_timer(benchmark_data, SIZE, check_points[i], NRUN, interpolation_search );
 		printf(RESULT_FORMATTER, " | ", "Interpolation", " | ", check_points[i], " | ",
 				interpolation_results[i], " | ");
 
 		// Jump Search
-		jump_results[i] = code_timer(benchmark_data, SIZE, check_points[i], NRUN, (*jump_search) );
+		jump_results[i] = code_timer(benchmark_data, SIZE, check_points[i], NRUN, jump_search );
 		printf(RESULT_FORMATTER, " | ", "Jump", " | ", check_points[i], " | ",
 				jump_results[i], " | ");
 
